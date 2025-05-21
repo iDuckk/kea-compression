@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.kea'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    withSourcesJar()
+    withJavadocJar()
+}
+
+jar {
+    archiveBaseName.set("kea-compression")
+    archiveVersion.set(version)
+    archiveClassifier.set("")
+
+    manifest {
+        attributes(
+            'Implementation-Title': 'KEA Compression Library',
+            'Implementation-Version': version
+        )
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // no dependencies yet
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
